@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+
+:root,
+[data-bs-theme=light] {
+    --bs-primary-rgb: 34, 15, 66;
+    --bs-secondary-rgb: 246, 236, 219;
+    --bs-light-rgb: 123,97,157;
+}
+
+* {
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.bitcoinAbsolute {
+    bottom: 10%;
+    right: 10%;
+}
+
+header {
+    height: 30vh;
+}
+
+
+header::before {
+    content: ' ';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -10;
+    background-color: rgba(53, 0, 69, 0.67);
+}
+
+.btn-secondary-hover:hover {
+    background-color: rgb(255, 196, 94) !important;
+    color: var(--bs-light-rgb) !important;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body class="bg-primary">
+
+    <header class="position-relative container-fluid">
+        <img src="/media/img/EllipseAmarilla.svg" alt="" class="position-absolute end-0">
+        <img src="/media/img/EllipseLila.svg" alt="" class="position-absolute start-0 bottom-0">
+        <section class="d-flex justify-content-evenly align-items-center h-100 px-4">
+            <section>
+                <h1 class="text-secondary fs-1">Presupuesto Mensual</h1>
+            </section>
+            <section class="align-self-center position-relative">
+                <picture>
+                    <img src="/media/img/profit.svg" alt="">
+                </picture>
+                <picture class="bitcoinAbsolute position-absolute">
+                    <img src="/media/img/bitcoin.svg" alt="">
+                </picture>
+            </section>
+        </section>
+    </header>
+    
+    <main>
+
+        <section class="py-5 px-4 container">
+            <h2 class="text-secondary py-4">Calculadora Mensual</h2>
+            <form action="" class="row g-3 align-items-end">
+                <div class="col-sm-12 col-md-6">
+                    <label for="" class="form-label text-secondary">Monto</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light text-secondary border-secondary">¢</span>
+                        <input id="inputMonto" type="number" min="0" placeholder="Monto" class="form-control bg-light text-secondary border-secondary"/>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <label for="" class="form-label text-secondary">Tipo de Gasto</label>
+                    <select name="" id="tipoGastos" class="form-select bg-light text-secondary border-secondary">
+                        <option selected>-- Seleccione un tipo de gasto --</option>
+                        <option>Vivienda</option>
+                        <option>Préstamos</option>
+                        <option>Alimentación</option>
+                        <option>Combustible</option>
+                        <option>Servicio Básicos (Internet, Agua, Electricidad, etc.)</option>
+                        <option>Servicio Streaming</option>
+                        <option>Ropa</option>
+                        <option>Seguros</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <button id="agregar" type="button" class="btn bg-warning text-primary btn-secondary-hover">Agregar</button>
+                    <button id="limpiar" type="button" class="btn bg-warning text-primary btn-secondary-hover">Limpiar</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="container py-4">
+            <h2 class="text-secondary">Tu Presupuesto</h2>
+            <article class="container">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="text-secondary">
+                            <td class="col-3 text-center">Tipo</td>
+                            <td class="col-auto text-center">Monto</td>
+                            <td class="col-3 text-center">%</td>
+                            <td class="col-3 text-center">Eliminar</td>
+                        </tr>
+                    </thead>
+                    <tbody id="infoFromUser">
+                        
+                    </tbody>
+                </table>
+            </article>
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+</body>
+</html>
