@@ -90,18 +90,7 @@ function LimpiarCampos() {
     selectTipoGastos.selectedIndex = 0;
 }
 
-//?Elimina un elemento
-function EliminarFila(boton, elemento, monto) {
-    boton.addEventListener('click', ()=> {
-        elemento.remove();
-        total -= monto;
-        if(total==0) {
-            tableTotal.textContent = '';
-            return;
-        }
-        tableTotal.textContent = total;
-    })
-}
+
 
 
 
@@ -128,10 +117,12 @@ function MostrarPorcentajesCards(cardItem, objeto, montoTotal){
 function ActualizarPorcentajes(arregloObjeto, itemHtml, total) {
     for (let index = 0; index < arregloObjeto.length; index++) {
         MostrarPorcentajesCards(itemHtml[index], arregloObjeto[index], Number(total));
-        console.log(itemHtml);
     }
 }
 
+
+let porcentajeCard = document.querySelectorAll('.porcentajeCard');
+let montoCard = document.querySelectorAll('.montoCard');
 
 btnAgregar.addEventListener('click', ()=> {
     if((inputMonto.value != null && inputMonto.value != ' ') && selectTipoGastos.selectedIndex > 0) {
@@ -144,8 +135,6 @@ btnAgregar.addEventListener('click', ()=> {
         total += Number(monto);
         
         //*
-        let montoCard = document.querySelectorAll('.montoCard');
-        let porcentajeCard = document.querySelectorAll('.porcentajeCard');
         let index = selectTipoGastos.selectedIndex-1;
 
         switch(selectTipoGastos.selectedIndex) {
@@ -175,6 +164,7 @@ btnAgregar.addEventListener('click', ()=> {
                 break;
             
         }
+        console.log(porcentajeCard);
         ActualizarPorcentajes(cardsInfo, porcentajeCard, total)
         tableTotal.textContent = `¢${total}`;
 
@@ -199,6 +189,25 @@ btnAgregar.addEventListener('click', ()=> {
     }
 })
 
-
+//?Elimina un elemento
+function EliminarFila(boton, elemento, monto) {
+    boton.addEventListener('click', ()=> {
+        let tipoGastoElemento = elemento.children[0].textContent;
+        switch(tipoGastoElemento) {
+            case 'Vivienda':
+                let objeto = cardsInfo.filter((elemento) => elemento.nombre == tipoGastoElemento);
+                objeto[0].total -= monto;
+                ActualizarPorcentajes(cardsInfo, porcentajeCard, total);
+                MostrarMontoTotal(montoCard[0], objeto[0], objeto[0].total);
+        }
+        elemento.remove();
+        total -= monto;
+        if(total==0) {
+            tableTotal.textContent = '';
+            return;
+        }
+        tableTotal.textContent = total;
+    })
+}
 
 btnLimpiar.addEventListener('click', LimpiarCampos, false);
