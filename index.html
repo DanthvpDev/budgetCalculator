@@ -62,22 +62,34 @@
         </section>
 
         <section class="container py-4">
-            <h2 class="text-secondary">Tu Presupuesto</h2>
+            <h2 class="text-secondary pb-4">Tu Presupuesto</h2>
             <article class="container">
                 <table class="table table-bordered">
                     <thead>
                         <tr class="text-secondary">
-                            <td class="col-3 text-center">Tipo</td>
-                            <td class="col-auto text-center">Monto</td>
-                            <td class="col-3 text-center">%</td>
-                            <td class="col-3 text-center">Eliminar</td>
+                            <td class="col-6">Tipo</td>
+                            <td class="col-5">Monto</td>
+                            <td class="col-auto">Eliminar</td>
                         </tr>
                     </thead>
                     <tbody id="infoFromUser">
                         
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="1">Total</td>
+                            <td id="Total" colspan="3"></td>
+                        </tr>
+                    </tfoot>
                 </table>
             </article>
+        </section>
+
+        <section class="container py-5">
+            <h2 class="text-secondary pb-4">Desglose</h2>
+            <div class="row row-gap-3" id="cardsContainer">
+                
+            </div>
         </section>
 
     </main>

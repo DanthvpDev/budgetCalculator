@@ -37,3 +37,7 @@ header::before {
     background-color: rgb(255, 196, 94) !important;
     color: var(--bs-light-rgb) !important;
 }
+
+.custom-table {
+    background-color: var(--bs-light-rgb) !important;
+}
