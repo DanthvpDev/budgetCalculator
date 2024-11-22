@@ -126,7 +126,10 @@ let montoCard = document.querySelectorAll('.montoCard');
 btnAgregar.addEventListener('click', ()=> {
     if((inputMonto.value != null && inputMonto.value != ' ') && selectTipoGastos.selectedIndex > 0) {
         
-        
+        inputMonto.classList.remove('error');
+        selectTipoGastos.classList.remove('error');
+
+
         //* Obtiene el monto ingresado en el input y el tipo de gasto seleccionado
         let monto = inputMonto.value;
         let tipoGasto = selectTipoGastos[selectTipoGastos.selectedIndex].text;
@@ -160,7 +163,8 @@ btnAgregar.addEventListener('click', ()=> {
 
     }
     else {
-        alerta.textContent = "Debe ingresar un monto válido y seleccionar el tipo de gasto";
+        inputMonto.classList.toggle('error');
+        selectTipoGastos.classList.toggle('error');
     }
     
 })

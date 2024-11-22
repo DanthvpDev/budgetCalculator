@@ -41,3 +41,7 @@ header::before {
 .custom-table {
     background-color: var(--bs-light-rgb) !important;
 }
+
+.error {
+    border: 1px solid red !important;
+}
