@@ -5,6 +5,7 @@ const inputMonto = document.getElementById('inputMonto');
 const selectTipoGastos = document.getElementById('tipoGastos');
 const tableTotal = document.getElementById('Total');
 const cardSection = document.getElementById('cardsContainer'); 
+const alerta = document.getElementById('alert');
 let total = 0;
 
 const cardsInfo = [
@@ -76,7 +77,7 @@ cardsInfo.forEach(element => {
                         <div class="card-body">
                             <h4><i class="${element.icono}"></i></h4>
                             <h4 class="card-title">${element.nombre}</h4>
-                            <p class="card-text montoCard">Monto total: ¢${element.total == undefined ? 0 : element.total }</p>
+                            <p class="card-text montoCard">Monto total: ¢${element.total ?? 0 }</p>
                             <p class="card-text porcentajeCard">Porcentaje: ${element.porcentaje}%</p>
                         </div>
                       </article>
@@ -91,11 +92,7 @@ function LimpiarCampos() {
 }
 
 
-
-
-
-
-//*Retorna el porcentaje de un tipo de gasti en específico
+//*Retorna el porcentaje de un tipo de gasto en específico
 function ObtenerPorcentaje(montoTotal, objeto) {
     return !montoTotal || !objeto.total ? 0 : (objeto.total / montoTotal) * 100;
 }
@@ -109,7 +106,9 @@ function MostrarMontoTotal(cardItem, objeto, monto) {
 
 //* Imprime el porcentaje (con relación al gasto total) en el card de desgloce
 function MostrarPorcentajesCards(cardItem, objeto, montoTotal){
+    // console.log(objeto.porcentaje, montoTotal, objeto)
     objeto.porcentaje = ObtenerPorcentaje(montoTotal, objeto).toFixed(1);
+    // console.log(objeto.porcentaje);
     cardItem.textContent = `Porcentaje: ${objeto.porcentaje}%`;
 }
 
@@ -137,34 +136,8 @@ btnAgregar.addEventListener('click', ()=> {
         //*
         let index = selectTipoGastos.selectedIndex-1;
 
-        switch(selectTipoGastos.selectedIndex) {
-            case 1:
-                MostrarMontoTotal(montoCard[index], cardsInfo[index], monto);
-                break;
-            case 2:
-                MostrarMontoTotal(montoCard[index], cardsInfo[index], monto);
-                break;
-            case 3:
-                MostrarMontoTotal(montoCard[index], cardsInfo[index], monto);
-                break;
-            case 4:
-                MostrarMontoTotal(montoCard[index], cardsInfo[index], monto);
-                break;
-            case 5:
-                MostrarMontoTotal(montoCard[index], cardsInfo[index], monto);
-                break;
-            case 6:
-                MostrarMontoTotal(montoCard[index], cardsInfo[index], monto);
-                break;
-            case 7:
-                MostrarMontoTotal(montoCard[index], cardsInfo[index], monto);
-                break;
-            case 8:
-                MostrarMontoTotal(montoCard[index], cardsInfo[index], monto);
-                break;
+        MostrarMontoTotal(montoCard[index], cardsInfo[index], monto);
             
-        }
-        console.log(porcentajeCard);
         ActualizarPorcentajes(cardsInfo, porcentajeCard, total)
         tableTotal.textContent = `¢${total}`;
 
@@ -185,23 +158,28 @@ btnAgregar.addEventListener('click', ()=> {
 
         LimpiarCampos();
 
-
     }
+    else {
+        alerta.textContent = "Debe ingresar un monto válido y seleccionar el tipo de gasto";
+    }
+    
 })
 
-//?Elimina un elemento
+//?Elimina un elemento y actualiza el valor total del objeto
 function EliminarFila(boton, elemento, monto) {
     boton.addEventListener('click', ()=> {
         let tipoGastoElemento = elemento.children[0].textContent;
-        switch(tipoGastoElemento) {
-            case 'Vivienda':
-                let objeto = cardsInfo.filter((elemento) => elemento.nombre == tipoGastoElemento);
-                objeto[0].total -= monto;
-                ActualizarPorcentajes(cardsInfo, porcentajeCard, total);
-                MostrarMontoTotal(montoCard[0], objeto[0], objeto[0].total);
-        }
-        elemento.remove();
+        let objeto = cardsInfo.filter(elemento => elemento.nombre == tipoGastoElemento);
+        let index = cardsInfo.findIndex(elemento => elemento.nombre == tipoGastoElemento)
+
+        objeto[0].total -= monto;
         total -= monto;
+        console.log(objeto[0].total);
+        ActualizarPorcentajes(cardsInfo, porcentajeCard, total);
+        MostrarMontoTotal(montoCard[index], objeto[0], objeto[0].total);
+
+        elemento.remove();
+        
         if(total==0) {
             tableTotal.textContent = '';
             return;
